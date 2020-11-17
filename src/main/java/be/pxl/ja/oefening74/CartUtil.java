@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CartUtil {
 
@@ -20,15 +21,35 @@ public class CartUtil {
      * @param items
      * @return
      */
-//    public static BigDecimal checkoutWhitDiscount(List<CartItem> items) {
-//        Map<String, List<CartItem>> listMap = items.stream()
-//                .collect(Collectors.groupingBy(CartItem::getNaam));
-//
-//        if(listMap.containsKey("shoes")) {
-//            listMap.get("shoes").stream().mapToInt(CartItem::getPrice).sum()
-//        }
-//
-//
-//    }
+    public static BigDecimal checkoutWhitDiscount(List<CartItem> items) {
+        Map<String, Double> itemTotalsMap = items.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                CartItem::getNaam,
+                                Collectors.summingDouble(c -> c.getPrice().doubleValue())));
+
+        // shoes discount
+        itemTotalsMap.computeIfPresent("shoes", (key, value) -> {
+            if(value>=100) {
+                return value - (value*0.2);
+            } else {
+                return value;
+            }
+        });
+
+        // hat discount
+        itemTotalsMap.computeIfPresent("hat", (key, value) -> {
+            if(items.stream()
+                    .filter(c -> c.getNaam().equals("hat"))
+                    .count() >= 2) {
+                return value - 10;
+            } else {
+                return value;
+            }
+        });
+
+        return BigDecimal.valueOf(itemTotalsMap.values().stream().mapToDouble(Double::doubleValue).sum());
+
+    }
 
 }
