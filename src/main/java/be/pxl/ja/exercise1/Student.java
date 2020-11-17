@@ -2,7 +2,7 @@ package be.pxl.ja.exercise1;
 
 import java.time.LocalDate;
 
-public class Student {
+public class Student implements Comparable<Student>{
 	private String name;
 	private int graduationYear;
 	private int score;
@@ -29,5 +29,20 @@ public class Student {
 
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
+	}
+
+	@Override
+	public String toString() {
+		return "Student{" +
+				"name='" + name + '\'' +
+				", graduationYear=" + graduationYear +
+				", score=" + score +
+				", dateOfBirth=" + dateOfBirth +
+				'}';
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		return o.getScore() - this.getScore();
 	}
 }
