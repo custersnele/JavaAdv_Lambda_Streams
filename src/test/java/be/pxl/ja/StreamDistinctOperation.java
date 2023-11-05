@@ -15,7 +15,7 @@ public class StreamDistinctOperation {
 	public void removingDoubles() {
 		List<String> withoutDoubles = Stream.of("zebra", "dog", "zebra", "dolphine")
 				.distinct()
-				.collect(Collectors.toList());
+				.toList();
 		assertEquals(3, withoutDoubles.size());
 	}
 

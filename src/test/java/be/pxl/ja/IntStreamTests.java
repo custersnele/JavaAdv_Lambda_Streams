@@ -47,7 +47,7 @@ public class IntStreamTests {
 
 	@Test
 	public void findMinMaxAndAverage() {
-		List<Integer> randomNumbers = random.ints(15, 0, 100).boxed().collect(Collectors.toList());
+		List<Integer> randomNumbers = random.ints(15, 0, 100).boxed().toList();
 		int max = randomNumbers.stream().mapToInt(x -> x).max().getAsInt();
 		int min = randomNumbers.stream().mapToInt(x -> x).max().getAsInt();
 		double average = randomNumbers.stream().mapToInt(x -> x).max().getAsInt();

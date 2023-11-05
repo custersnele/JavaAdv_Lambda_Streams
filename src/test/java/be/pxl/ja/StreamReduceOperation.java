@@ -13,7 +13,7 @@ public class StreamReduceOperation {
 
 	@Test
 	public void sumWithReduce() {
-		List<Integer> randomNumbers = random.ints(15, 0, 100).boxed().collect(Collectors.toList());
+		List<Integer> randomNumbers = random.ints(15, 0, 100).boxed().toList();
 		long sum1 = randomNumbers.stream().mapToInt(x -> x).sum();
 		int sum2 = randomNumbers.stream().reduce(0, (sumSoFar, nextElement) -> sumSoFar + nextElement);
 		int sum3 = randomNumbers.stream().reduce(0, Integer::sum);

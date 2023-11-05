@@ -10,7 +10,7 @@ public class StreamCollectOperation {
 
 		List<String> theBeatles =
 				Stream.of("John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr")
-				.collect(Collectors.toList());
+						.toList();
 		System.out.println(theBeatles);
 	}
 

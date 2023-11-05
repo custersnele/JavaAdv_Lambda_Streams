@@ -25,7 +25,7 @@ public class StreamMapOperation {
 	public void mapToLengths() {
 		List<Integer> lengths = Stream.of("zebra", "dog", "dolphine")
 				.map(String::length)
-				.collect(Collectors.toList());
+				.toList();
 
 		assertEquals(Arrays.asList(5, 3, 8), lengths);
 	}
@@ -36,7 +36,7 @@ public class StreamMapOperation {
 		List<String> animals = Arrays.asList("zebra", "dog", "dolphine");
 		List<String> names = Arrays.asList("Wannes", "Hans");
 		List<String> cities = Arrays.asList("Amsterdam", "Kopenhagen", "Oslo");
-		List<Integer> lengths = Stream.of(animals, names, cities).flatMap(l -> l.stream().map(String::length)).collect(Collectors.toList());
+		List<Integer> lengths = Stream.of(animals, names, cities).flatMap(l -> l.stream().map(String::length)).toList();
 
 		assertEquals(Arrays.asList(5, 3, 8, 6, 4, 9, 10, 4), lengths);
 	}
