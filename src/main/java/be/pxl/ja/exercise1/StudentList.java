@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDao {
+public class StudentList {
 
 	public static List<Student> createStudents() {
 		List<Student> students = new ArrayList<>();
